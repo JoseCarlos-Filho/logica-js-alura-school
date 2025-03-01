@@ -20,15 +20,15 @@
                     <h2>Boas vindas ao desafio de programação!</h2>
                     <p>Escolha o tipo de operação</p>
                     <div class="container__operacao">
-                        <input type="radio" name="op1" id="imc-radio" class="container__operacao-checkbox">IMC</checkbox>
-                        <input type="radio" name="op2" id="fatorial-radio" class="container__operacao-checkbox">Fatorial</checkbox>
-                        <input type="radio" name="op3" id="conversao-radio" class="container__operacao-checkbox">Dolar/Reais</checkbox>
-                        <input type="radio" name="op4" id="area-radio" class="container__operacao-checkbox">Área/Perímetro</checkbox>
-                        <input type="radio" name="op5" id="circular-radio" class="container__operacao-checkbox">Área Circular</checkbox>
-                        <input type="radio" name="op6" id="tabuada-radio" class="container__operacao-checkbox">Tabuada</checkbox>
+                        <input type="radio" name="operacao" value="op1" id="imc-radio" class="container__operacao-checkbox">IMC</checkbox>
+                        <input type="radio" name="operacao" value="op2" id="fatorial-radio" class="container__operacao-checkbox">Fatorial</checkbox>
+                        <input type="radio" name="operacao" value="op3" id="conversao-radio" class="container__operacao-checkbox">Dolar/Reais</checkbox>
+                        <input type="radio" name="operacao" value="op4" id="area-radio" class="container__operacao-checkbox">Área/Perímetro</checkbox>
+                        <input type="radio" name="operacao" value="op5" id="circular-radio" class="container__operacao-checkbox">Área Circular</checkbox>
+                        <input type="radio" name="operacao" value="op6" id="tabuada-radio" class="container__operacao-checkbox">Tabuada</checkbox>
                     </div>
                     <!-- Campos do IMC -->
-                    <div class="container__imc">
+                    <div class="container__imc hidden">
                         <h3>IMC</h3>
                         <P class="container__imc-paragrafo">Calculadora de indice de massa corporal</P>
                         <label for="altura">Altura</label>
@@ -39,7 +39,7 @@
                         <p id="resultado-imc"></p>
                     </div>
                     <!-- Campos do Calculo do Fatorial -->
-                    <div class="container__fatorial hidden" aria-hidden="true">
+                    <div class="container__fatorial hidden">
                         <h3>Fatorial</h3>
                         <p class="container__fatorial-parafrafo">Calculadora de fatorial</p>
                         <label for="fatorial">Número</label>
@@ -48,20 +48,49 @@
                         <p id="resultado-fatorial"></p>
                     </div>
                     <!-- Campos da Conversão de Dolar para Reais -->
-                    <div class="container__conversao">
+                    <div class="container__conversao hidden">
                         <h3>Conversão dolar/reais</h3>
                         <p class="container__conversao-paragrafo">Conversor de moeda dolar em reais</p>
                         <label for="conversao">Dolar</label>
                         <input type="number" id="conversao" placeholder="Digite o valor em dolar">
                         <button id="calcular-conversao" class="container__botao">Calcular</button>
-                        <p id="resultado-conversao">Oi</p>
+                        <p id="resultado-conversao"></p>
+                    </div>
+                    <!-- Campos da Área e Perímetro -->
+                    <div class="container__area hidden">
+                        <h3>Área retângulo</h3>
+                        <P class="container__area-paragrafo">Calculadora da area retângular</P>
+                        <label for="altura-area">Altura</label>
+                        <input type="number" id="altura-area" placeholder="Altura do retângulo" />
+                        <label for="largura-area">Largura</label>
+                        <input type="number" id="largura-area" placeholder="Largura do retângulo" />
+                        <button id="calcular-area" class="container__botao">Calcular</button>
+                        <p id="resultado-area"></p>
+                    </div>
+                    <!-- Campos da Área Circular -->
+                    <div class="container__circular hidden">
+                        <h3>Área circular</h3>
+                        <p class="container__circular-paragrafo">Calculo da área circular</p>
+                        <label for="raio">Raio</label>
+                        <input type="number" id="raio" placeholder="Digite o raio da circunferência">
+                        <button id="calcular-raio" class="container__botao">Calcular</button>
+                        <p id="resultado-raio"></p>
+                    </div>
+                    <!-- Campos da Tabuada -->
+                    <div class="container__tabuada hidden">
+                        <h3>Tabuada</h3>
+                        <p class="container__tabuada-paragrafo">Realiza o calculo da tabuada</p>
+                        <label for="tabuada">Número</label>
+                        <input type="number" id="tabuada" placeholder="Digite o número para a tabuada">
+                        <button id="calcular-tabuada" class="container__botao">Calcular</button>
+                        <p id="resultado-tabuada"></p>
                     </div>
                 </div>
                 <img src="./img/trophy.png" alt="ícone de um troféu" />
             </div>
         </div>
     </div>
-    <script src="app.js" defer></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>
