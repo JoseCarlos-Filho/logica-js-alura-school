@@ -37,15 +37,23 @@ function limpaCampos() {
 
     formFatorial.childNodes.forEach(campo => {
         verificaONoDoCampo(campo);
-    })
+    });
 
     formConversao.childNodes.forEach(campo => {
         verificaONoDoCampo(campo);
-    })
-    // let campos = document.querySelectorAll('input');
-    // campos.forEach(campos => {
-    //     campos.value = '';
-    // })
+    });
+
+    formRetangulo.childNodes.forEach(campo => {
+        verificaONoDoCampo(campo);
+    });
+
+    formCirculo.childNodes.forEach(campo => {
+        verificaONoDoCampo(campo);
+    });
+
+    formTabuada.childNodes.forEach(campo => {
+        verificaONoDoCampo(campo);
+    });
 }
 
 // Evento de click nos botões de operações
@@ -138,7 +146,7 @@ btnCalcularFatorial.addEventListener('click', () => {
 // Bloco de execução do calculo de conversão de temperatura
 function converteDolarEmReal(dolar) {
     let resultado = document.querySelector('#resultado-conversao');
-    let cotacao = 4.80;
+    const cotacao = 4.80;
     let real = dolar * cotacao;
     resultado.innerHTML = `O valor em real(is) é: R$ ${real.toFixed(2)}`;
 }
@@ -149,6 +157,70 @@ btnCalcularConversao.addEventListener('click', () => {
         messagemDeErro();
     } else {
         converteDolarEmReal(dolar);
+        limpaCampos();
+    }
+});
+
+// Bloco de execução do calculo da área do retângulo
+function calculaAreaRetangulo(base, altura) {
+    let resultado = document.querySelector('#resultado-area');
+    let area = base * altura;
+    let perimetro = 2 * (base + altura);
+    resultado.innerHTML = `A área do retângulo é: ${area} m² e o perímetro é: ${perimetro} metros`;
+}
+
+btnCalcularArea.addEventListener('click', () => {
+    let altura = parseFloat(document.querySelector('#altura-area').value);
+    let base = parseFloat(document.querySelector('#largura-area').value);
+    if (
+        altura === '' || 
+        base === '' || 
+        isNaN(altura) || 
+        isNaN(base) || 
+        altura <= 0 ||
+        base <= 0
+    ) {
+        messagemDeErro();
+    } else {
+        calculaAreaRetangulo(base, altura);
+        limpaCampos();
+    }
+});
+
+// Bloco de execução do calculo da área do círculo
+function calculaAreaCirculo(raio) {
+    let resultado = document.querySelector('#resultado-raio');
+    let area = Math.PI * (raio ** 2);
+    let perimetro = 2 * Math.PI * raio;
+    resultado.innerHTML = `A área do círculo é: ${area.toFixed(2)} m² e o perímetro é: ${perimetro.toFixed(2)} metros`;
+}
+
+btnCalcularCirculo.addEventListener('click', () => {
+    let raio = parseFloat(document.querySelector('#raio').value);
+    if (raio === '' || isNaN(raio) || raio <= 0) {
+        messagemDeErro();
+    } else {
+        calculaAreaCirculo(raio);
+        limpaCampos();
+    }
+});
+
+// Bloco de execução do calculo da tabuada
+function calculaTabuada(numero) {
+    let resultado = document.querySelector('#resultado-tabuada');
+    let tabuada = '';
+    for (let indice = 1; indice <= 10; indice++) {
+        tabuada += `${numero} x ${indice} = ${numero * indice} <br>`;
+    }
+    resultado.innerHTML = tabuada;
+}
+
+btnCalcularTabuada.addEventListener('click', () => {
+    let numero = parseInt(document.querySelector('#tabuada').value);
+    if (numero === '' || isNaN(numero) || numero <= 0 || !Number.isInteger(numero)) {
+        messagemDeErro();
+    } else {
+        calculaTabuada(numero);
         limpaCampos();
     }
 })
