@@ -17,8 +17,8 @@
         <div class="container__conteudo">
             <div class="container__informacoes">
                 <div class="container__texto">
-                    <h2>Boas vindas ao desafio de programação!</h2>
-                    <p>Escolha o tipo de operação</p>
+                    <h2 class="container__texto-titulo">Boas vindas ao desafio de programação!</h2>
+                    <p class="container__texto-paragrafo">Escolha o tipo de operação</p>
                     <div class="container__operacao">
                         <input type="radio" name="operacao" value="op1" id="imc-radio" class="container__operacao-checkbox">IMC</checkbox>
                         <input type="radio" name="operacao" value="op2" id="fatorial-radio" class="container__operacao-checkbox">Fatorial</checkbox>
@@ -29,8 +29,6 @@
                     </div>
                     <!-- Campos do IMC -->
                     <div class="container__imc hidden">
-                        <h3>IMC</h3>
-                        <P class="container__imc-paragrafo">Calculadora de indice de massa corporal</P>
                         <label for="altura">Altura</label>
                         <input type="number" step="0.01" id="altura" placeholder="Altura em metros" />
                         <label for="peso">Peso</label>
@@ -40,8 +38,6 @@
                     </div>
                     <!-- Campos do Calculo do Fatorial -->
                     <div class="container__fatorial hidden">
-                        <h3>Fatorial</h3>
-                        <p class="container__fatorial-parafrafo">Calculadora de fatorial</p>
                         <label for="fatorial">Número</label>
                         <input type="number" id="fatorial" placeholder="Digite um número">
                         <button id="calcular-fatorial" class="container__botao">Calcular</button>
@@ -49,8 +45,6 @@
                     </div>
                     <!-- Campos da Conversão de Dolar para Reais -->
                     <div class="container__conversao hidden">
-                        <h3>Conversão dolar/reais</h3>
-                        <p class="container__conversao-paragrafo">Conversor de moeda dolar em reais</p>
                         <label for="conversao">Dolar</label>
                         <input type="number" step="0.01" id="conversao" placeholder="Digite o valor em dolar">
                         <button id="calcular-conversao" class="container__botao">Calcular</button>
@@ -58,8 +52,6 @@
                     </div>
                     <!-- Campos da Área e Perímetro -->
                     <div class="container__area hidden">
-                        <h3>Área retângulo</h3>
-                        <P class="container__area-paragrafo">Calculadora da area retângular</P>
                         <label for="altura-area">Altura</label>
                         <input type="number" step="0.01" id="altura-area" placeholder="Altura do retângulo" />
                         <label for="largura-area">Largura</label>
@@ -69,8 +61,6 @@
                     </div>
                     <!-- Campos da Área Circular -->
                     <div class="container__circular hidden">
-                        <h3>Área circular</h3>
-                        <p class="container__circular-paragrafo">Calculo da área circular</p>
                         <label for="raio">Raio</label>
                         <input type="number" step="0.01" id="raio" placeholder="Digite o raio da circunferência">
                         <button id="calcular-raio" class="container__botao">Calcular</button>
@@ -78,8 +68,6 @@
                     </div>
                     <!-- Campos da Tabuada -->
                     <div class="container__tabuada hidden">
-                        <h3>Tabuada</h3>
-                        <p class="container__tabuada-paragrafo">Realiza o calculo da tabuada</p>
                         <label for="tabuada">Número</label>
                         <input type="number" id="tabuada" placeholder="Digite o número para a tabuada">
                         <button id="calcular-tabuada" class="container__botao">Calcular</button>
