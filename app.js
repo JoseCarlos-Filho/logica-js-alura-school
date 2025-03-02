@@ -17,6 +17,14 @@ const btnCalcularArea = document.querySelector('#calcular-area');
 const btnCalcularCirculo = document.querySelector('#calcular-raio');
 const btnCalcularTabuada = document.querySelector('#calcular-tabuada');
 
+// Função que altera o texto do título e paragrafo da page
+function alteraTexto(titulo, paragrafo) {
+    let tituloPage = document.querySelector('.container__texto-titulo');
+    let paragrafoPage = document.querySelector('.container__texto-paragrafo');
+    tituloPage.innerHTML = titulo;
+    paragrafoPage.innerHTML = paragrafo;
+}
+
 // Função que mostra mensagem de erro
 function messagemDeErro() {
     alert('prencha os campos corretamente!');
@@ -66,6 +74,26 @@ function botoesDeOperacoes() {
     botoes.forEach(botao => {
         if (botao.checked) {
             mostraOperacao(botao.value);
+            switch (botao.value) {
+                case 'op1':
+                    alteraTexto('Calculo de IMC', 'Informe sua altura e peso para calcular o IMC');
+                    break;
+                case 'op2':
+                    alteraTexto('Calculo de Fatorial', 'Informe um número para calcular o fatorial');
+                    break;
+                case 'op3':
+                    alteraTexto('Conversão de Dólar em Real', 'Informe o valor em dólar para a conversão');
+                    break;
+                case 'op4':
+                    alteraTexto('Calculo da área do Retângulo', 'Informe a altura e a base do retângulo');
+                    break;
+                case 'op5':
+                    alteraTexto('Calculo da área do Círculo', 'Informe o raio do círculo');
+                    break;
+                case 'op6':
+                    alteraTexto('Calculo da Tabuada', 'Informe um número para calcular a tabuada');
+                    break;
+            }
         }
     })
 }
