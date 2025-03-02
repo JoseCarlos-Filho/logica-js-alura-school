@@ -68,6 +68,7 @@ body::before {
 
 .container__texto {
     margin: 16px 0 16px 0;
+    text-align: center;
 }
 
 .container__texto-azul {
@@ -82,6 +83,11 @@ body::before {
     width: 100%;
     font-size: 18px;
     font-weight: 400;
+}
+
+.container__operacao input[type="radio"] {
+    display: block;
+    margin-left: 30px;
 }
 
 .container__imc,
@@ -110,23 +116,6 @@ button {
 h2 {
     font-size: 32px;
     font-weight: 400;
-}
-
-h3 {
-    font-size: 24px;
-    font-weight: 400;
-}
-
-.container__imc-paragrafo,
-.container__fatorial-parafrafo,
-.container__conversao-paragrafo,
-.container__area-paragrafo,
-.container__circular-paragrafo,
-.container__tabuada-paragrafo {
-    font-size: 20px;
-    font-weight: 400;
-    margin: 10px 0px 15px 0px;
-
 }
 
 .hidden {
@@ -169,7 +158,7 @@ label {
 
 #resultado-tabuada {
     position: absolute;
-    top: 40%;
+    top: 45%;
     right: 25%;
 }
 
@@ -179,4 +168,95 @@ label {
     right: 0%;
     height: auto;
     z-index: -1; 
+}
+
+@media screen and (max-width: 500px) {
+
+    body::before {
+        height: 100vh;
+        background-size: cover;
+    }
+    .container {
+        width: 100%;
+        height: 100vh; 
+        border-radius: 0;
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        background-size: cover;
+        border: none;
+    }
+
+    .container__conteudo {
+        flex-direction: column;
+        width: 100%; 
+        align-items: center; 
+    }
+
+    .container__informacoes {
+        height: auto;
+        width: 100%; 
+        align-items: center; 
+    }
+
+    .container__botao {
+        width: 80%;
+    }
+
+    .container__texto {
+        position: absolute;
+        top: 10%;
+    }
+
+    .container__texto-titulo {
+        position: relative;
+        top: 0;
+        left: 20%;
+        width: 60%;
+        margin-bottom: 15px;
+    }
+
+    .container__operacao {
+        display: grid;
+        grid-template-columns: 30px 100px;
+        gap: 15px; 
+        justify-content: center;
+        justify-items: start;
+    }
+
+    .container__operacao input[type="radio"] {
+        margin-left: 0;
+    }
+
+    .container__imc,
+    .container__fatorial,
+    .container__conversao,
+    .container__area,
+    .container__circular,
+    .container__tabuada {
+        margin: 3em 0;
+        width: 100%; 
+        align-items: center; 
+    }
+
+    #altura, 
+    #peso, 
+    #fatorial,
+    #conversao,
+    #altura-area,
+    #largura-area,
+    #raio,
+    #tabuada {
+        width: 80%;
+    }
+
+    #resultado-tabuada {
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+
+    .trofeu {
+        display: none;
+    }
 }
