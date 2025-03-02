@@ -166,3 +166,17 @@ label {
     font-size: 24px;
     font-weight: 700;
 }
+
+#resultado-tabuada {
+    position: absolute;
+    top: 40%;
+    right: 25%;
+}
+
+.trofeu {
+    position: absolute;
+    top: 85%;
+    right: 0%;
+    height: auto;
+    z-index: -1; 
+}
