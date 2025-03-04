@@ -113,6 +113,24 @@ button {
     font-family: 'Inter', sans-serif;
 }
 
+.container__botao-reiniciar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #1875E8;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+.container__botao-reiniciar:disabled {
+    background-color: gray;
+}
+
 h2 {
     font-size: 32px;
     font-weight: 400;
