@@ -16,6 +16,7 @@ const btnCalcularConversao = document.querySelector('#calcular-conversao');
 const btnCalcularArea = document.querySelector('#calcular-area');
 const btnCalcularCirculo = document.querySelector('#calcular-raio');
 const btnCalcularTabuada = document.querySelector('#calcular-tabuada');
+const btnReniciarPage = document.querySelector('.container__botao-reiniciar');
 
 // Função que altera o texto do título e paragrafo da page
 function alteraTexto(titulo, paragrafo) {
@@ -25,12 +26,32 @@ function alteraTexto(titulo, paragrafo) {
     paragrafoPage.innerHTML = paragrafo;
 }
 
-// Função que mostra mensagem de erro
+btnReniciarPage.addEventListener('click', () => {
+    window.location.reload();
+})
+
+// Bloco de funções que mostra mensagens de erro
 function messagemDeErro() {
-    alert('prencha os campos corretamente!');
-    throw new Error('prencha os campos corretamente!');
+    alert('prencha os campos corretamente, o campo não pode ser vazio e nem conter letras!');
+    throw new Error('prencha os campos corretamente, o campo não pode ser vazio e nem conter letras!');
 }
 
+function messagemDeErroCampoAltura() {
+    alert('prencha o campo com valores entre 0 e 3 metros!');
+    throw new Error('preencha o campo com valores entre 0 e 3 metros!');
+}
+
+function messagemDeErroCampoPeso() {
+    alert('preencha o campo com valores entre 0 e 300 kg!');
+    throw new Error('preencha o campo com valores entre 0 e 300 kg!');
+}
+
+function menssagemDeErroCampoAlturaBase() {
+    alert('prencha os campos com valores maiores que 0!');
+    throw new Error('prencha os campos com valores maiores que 0!');
+}
+
+// Função que verifica se o campo é um input e limpa o campo
 function verificaONoDoCampo(campo) {
     if (campo.nodeName === 'INPUT') {
         campo.value = '';
@@ -74,6 +95,7 @@ function botoesDeOperacoes() {
     botoes.forEach(botao => {
         if (botao.checked) {
             mostraOperacao(botao.value);
+            btnReniciarPage.removeAttribute('disabled');
             switch (botao.value) {
                 case 'op1':
                     alteraTexto('Calculo de IMC', 'Informe sua altura e peso para calcular o IMC');
@@ -133,10 +155,28 @@ function mostraOperacao(botao) {
 
 
 // Bloco de execução do calculo do IMC
+function faixaDeImc(imc) {
+    let resultado = document.querySelector('#resultado-imc');
+    if (imc < 18.5) {
+        resultado.innerHTML = `seu IMC é: ${imc.toFixed(2)} e você está abaixo do peso`;
+    } else if (imc >= 18.5 && imc <= 24.9) {
+        resultado.innerHTML = `seu IMC é: ${imc.toFixed(2)} e você está com o peso normal`;
+    } else if (imc >= 25 && imc <= 29.9) {
+        resultado.innerHTML = `seu IMC é: ${imc.toFixed(2)} e você está com sobrepeso`;
+    } else if (imc >= 30 && imc <= 34.9) {
+        resultado.innerHTML = `seu IMC é: ${imc.toFixed(2)} e você está com obesidade grau 1`;
+    } else if (imc >= 35 && imc <= 39.9) {
+        resultado.innerHTML = `seu IMC é: ${imc.toFixed(2)} e você está com obesidade grau 2`;
+    } else {
+        resultado.innerHTML = `seu IMC é: ${imc.toFixed(2)} e você está com obesidade grau 3`;
+    }
+}
+
+
 function calculaImc(altura, peso) {
     let resultado = document.querySelector('#resultado-imc');
     let imc = peso / (altura ** 2);
-    resultado.innerHTML = `seu IMC é: ${imc.toFixed(2)}`;
+    faixaDeImc(imc);
 }
 
 btnCalcularImc.addEventListener('click', () => { 
@@ -144,10 +184,23 @@ btnCalcularImc.addEventListener('click', () => {
     let peso = document.querySelector('#peso').value;   
     if (altura === '' || peso === '' || isNaN(altura) || isNaN(peso)) {
         messagemDeErro();
-    } else {
-        calculaImc(altura, peso);
-        limpaCampos();
+        return;
     }
+    
+    if (altura <= 0 || altura > 3) {
+        messagemDeErroCampoAltura();
+        return;
+
+    } 
+
+    if (peso <= 0 || peso > 300) {
+        messagemDeErroCampoPeso();
+        return;
+    }  
+    
+    calculaImc(altura, peso);
+    limpaCampos();
+    
 });
 
 // Bloco de execução do calculo do Fatorial
@@ -162,9 +215,9 @@ function calculaFatorial(numero) {
 
 btnCalcularFatorial.addEventListener('click', () => {
     let numero = parseInt(document.querySelector('#fatorial').value);
-    if (numero === '' || isNaN(numero) || numero < 0 || !Number.isInteger(numero)) {
-        console.log(numero);
+    if (numero === '' || isNaN(numero) || numero <= 0 || !Number.isInteger(numero)) {
         messagemDeErro();
+        return;
     } else {
         calculaFatorial(numero);
         limpaCampos();
@@ -183,18 +236,26 @@ btnCalcularConversao.addEventListener('click', () => {
     let dolar = parseFloat(document.querySelector('#conversao').value);
     if (dolar === '' || isNaN(dolar) || dolar <= 0) {
         messagemDeErro();
+        return;
     } else {
         converteDolarEmReal(dolar);
         limpaCampos();
     }
 });
 
+// Função que calcula a área em hectares
+function calculaAreaEmHectare(area) {
+    let hectare = area / 10000;
+    return hectare;
+}
+
 // Bloco de execução do calculo da área do retângulo
 function calculaAreaRetangulo(base, altura) {
     let resultado = document.querySelector('#resultado-area');
     let area = base * altura;
     let perimetro = 2 * (base + altura);
-    resultado.innerHTML = `A área do retângulo é: ${area} m² e o perímetro é: ${perimetro} metros`;
+    let hectare = calculaAreaEmHectare(area);
+    resultado.innerHTML = `A área do retângulo é: ${area} m² e o perímetro é: ${perimetro} metros. Em hectares é: ${hectare.toFixed(2)} ha`;
 }
 
 btnCalcularArea.addEventListener('click', () => {
@@ -204,15 +265,20 @@ btnCalcularArea.addEventListener('click', () => {
         altura === '' || 
         base === '' || 
         isNaN(altura) || 
-        isNaN(base) || 
-        altura <= 0 ||
-        base <= 0
+        isNaN(base)
     ) {
         messagemDeErro();
-    } else {
-        calculaAreaRetangulo(base, altura);
-        limpaCampos();
+        return;
     }
+    
+    if (altura <= 0 || base <= 0) {
+        menssagemDeErroCampoAlturaBase();
+        return;
+    } 
+    
+    calculaAreaRetangulo(base, altura);
+    limpaCampos();
+    
 });
 
 // Bloco de execução do calculo da área do círculo
@@ -220,7 +286,8 @@ function calculaAreaCirculo(raio) {
     let resultado = document.querySelector('#resultado-raio');
     let area = Math.PI * (raio ** 2);
     let perimetro = 2 * Math.PI * raio;
-    resultado.innerHTML = `A área do círculo é: ${area.toFixed(2)} m² e o perímetro é: ${perimetro.toFixed(2)} metros`;
+    let hectare = calculaAreaEmHectare(area);
+    resultado.innerHTML = `A área do círculo é: ${area.toFixed(2)} m² e o perímetro é: ${perimetro.toFixed(2)} metros. Em hectares é: ${hectare.toFixed(2)} ha`;
 }
 
 btnCalcularCirculo.addEventListener('click', () => {
